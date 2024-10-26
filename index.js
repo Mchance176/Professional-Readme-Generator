@@ -57,27 +57,32 @@ const questions = [
 async function writeToFile(fileName, data) {
     try {
         await fs.writeFile(fileName, data);
-        console.log(`README file ${fileName} has been created successfully.`);
-    } catch (error) {
-        console.error(`Error creating README file: ${error}`);
+        console.log(`Successfully created ${fileName}`);
+      } catch (error) {
+        console.error('An error occurred while writing the file:', error);
+      }
     }
-}
 
 // Function to initialize app
 async function init() {
     try {
-        //Prompt for users with questions
-        const answers = await inquirer.prompt(questions);
-        
-        //Generate markdown based on user's answers
-        const markdown = generateMarkdown(answers);
-
-        //Write the generated markdown to Readme.md file
-        await writeToFile('README.md', markdown);
+      // Prompt the user with questions
+      const answers = await inquirer.prompt(questions);
+      
+      // Generate markdown content based on user's answers
+      const markdown = generateMarkdown(answers);
+      
+      // Display the generated README content in the console
+      console.log('\nGenerated README.md content:\n');
+      console.log(markdown);
+      
+      // Write the generated markdown to README.md file
+      await writeToFile('README.md', markdown);
     } catch (error) {
-        console.error(`An error occurred while initializing the app: ${error}`);
+      console.error('An error occurred during initialization:', error);
     }
-}
+  }
+  
 
 // Function call to initialize app
 init();
