@@ -32,8 +32,40 @@ function generateMarkdown(data) {
 
 ${renderLicenseSection(data.license)}
 
-##
+## Description
 
+${data.description} 
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Installation
+
+${data.installation}  
+
+## Usage
+
+${data.usage}
+
+## Contributing
+
+${data.contributing}
+
+## Tests
+
+${data.tests}
+
+## Questions
+
+If you have any questions about the project, please contact me:
+
+- GitHub: [${data.github}](https://github.com/Mchance176/Professional-Readme-Generator/${data.github})
+- Email: ${data.email} (matt.chance176@gmail.com)
 `;
 }
 
