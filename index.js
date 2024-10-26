@@ -39,7 +39,7 @@ const questions = [
         type: 'list',
         name: 'license',
         message: 'Choose a license for your project:',
-        choices: ['MIT'],
+        choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3', 'None'],
     },
     {
         type: 'input',
@@ -53,11 +53,31 @@ const questions = [
     },
 ];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// Function to write README file
+async function writeToFile(fileName, data) {
+    try {
+        await fs.writeFile(fileName, data);
+        console.log(`README file ${fileName} has been created successfully.`);
+    } catch (error) {
+        console.error(`Error creating README file: ${error}`);
+    }
+}
 
-// TODO: Create a function to initialize app
-function init() {}
+// Function to initialize app
+async function init() {
+    try {
+        //Prompt for users with questions
+        const answers = await inquirer.prompt(questions);
+        
+        //Generate markdown based on user's answers
+        const markdown = generateMarkdown(answers);
+
+        //Write the generated markdown to Readme.md file
+        await writeToFile('README.md', markdown);
+    } catch (error) {
+        console.error(`An error occurred while initializing the app: ${error}`);
+    }
+}
 
 // Function call to initialize app
 init();
