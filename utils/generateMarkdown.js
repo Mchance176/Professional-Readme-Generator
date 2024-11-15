@@ -1,13 +1,13 @@
 // Function to render license badge
 function renderLicenseBadge(license) {
-  if (!license) return "";
-  return `![License](https://img.shields.io/badge/license-${encodeURIComponent(license)}-blue.svg)`;
+  if (!license || license === 'None') return "";
+  return `![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)`;
 }
 
 // Function to render license link
 function renderLicenseLink(license) {
-  if (!license) return "";
-  return `https://opensource.org/licenses/${encodeURIComponent(license)}`;
+  if (!license || license === 'None') return "";
+  return 'https://opensource.org/licenses/MIT';
 }
 
 // Function to render license section
@@ -19,11 +19,11 @@ function renderLicenseSection(license) {
 
   return `## License
 
-  This project is licensed under the ${license} license.
+This application is covered under the MIT license.
 
 ${badge}
 
-For more information, see the [LICENSE](${link}) file.`;
+For more information about this license, please visit [MIT License](${link})`;
 }
 
 // Function to generate markdown
@@ -40,7 +40,7 @@ ${data.description}
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
+${data.license && data.license !== 'None' ? '- [License](#license)\n' : ''}- [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
 
@@ -64,8 +64,8 @@ ${data.tests}
 
 If you have any questions about the project, please contact me:
 
-- GitHub: [${data.github}](https://github.com/Mchance176/Professional-Readme-Generator/${data.github})
-- Email: ${data.email} (matt.chance176@gmail.com)
+- GitHub: [${data.github}](https://github.com/${data.github})
+- Email: ${data.email}
 `;
 }
 
